@@ -37,4 +37,9 @@ public class ProveedorServiceImpl implements ProveedorService {
         proveedorRepository.delete(proveedor);
         return proveedor;
     }
+
+    @Override
+    public Proveedor updateProveedor(Proveedor proveedor) {
+        return proveedorRepository.save(proveedor);
+    }
 }

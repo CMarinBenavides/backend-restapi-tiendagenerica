@@ -13,4 +13,6 @@ public interface ClienteService {
     public Cliente findById(Long id);
 
     public Cliente deleteClienteById(Long id);
+
+    public Cliente updateCliente(Cliente cliente);
 }

@@ -2,12 +2,14 @@ package com.arc.backendTienda.Controllers;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,5 +59,20 @@ public class UsuarioController {
     public void deleteUsuarioById(@AuthenticationPrincipal UserPrincipal userPrincipal,
             @PathVariable(value = "id") Long id) {
         usuarioService.deleteUsuarioById(id);
+    }
+
+    @PutMapping("/usuario")
+    public ResponseEntity<Usuario> updateUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal,
+            @RequestBody Usuario usuario) {
+        Usuario usuarioActual = usuarioService.findById(usuario.getCedula());
+        usuarioActual.setCedula(usuario.getCedula());
+        usuarioActual.setNombre_completo(usuario.getNombre_completo());
+        usuarioActual.setCorreo_electronico(usuario.getCorreo_electronico());
+        usuarioActual.setRoles(usuario.getRoles());
+        usuarioActual.setUsuario(usuario.getUsuario());
+        usuarioActual.setClave(usuario.getClave());
+
+        final Usuario usuarioActualizado = usuarioService.updateUsuario(usuarioActual);
+        return ResponseEntity.ok(usuarioActualizado);
     }
 }

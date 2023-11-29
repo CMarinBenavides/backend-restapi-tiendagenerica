@@ -13,4 +13,6 @@ public interface ProveedorService {
     public Proveedor findById(Long id);
 
     public Proveedor deleteProveedorById(Long id);
+
+    public Proveedor updateProveedor(Proveedor proveedor);
 }

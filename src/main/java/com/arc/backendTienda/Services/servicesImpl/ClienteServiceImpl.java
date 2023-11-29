@@ -37,4 +37,9 @@ public class ClienteServiceImpl implements ClienteService {
         clienteRepository.delete(cliente);
         return cliente;
     }
+
+    @Override
+    public Cliente updateCliente(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
 }

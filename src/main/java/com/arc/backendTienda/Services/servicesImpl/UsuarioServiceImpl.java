@@ -60,4 +60,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuario;
     }
 
+    @Override
+    public Usuario updateUsuario(Usuario usuario) {
+        usuario.setClave(new BCryptPasswordEncoder().encode(usuario.getClave()));
+        return usuarioRepository.save(usuario);
+    }
+
 }

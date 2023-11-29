@@ -18,4 +18,6 @@ public interface UsuarioService {
     public Usuario findById(Long id);
 
     public Usuario deleteUsuarioById(Long id);
+
+    public Usuario updateUsuario(Usuario usuario);
 }
